@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ bike.brand }} {{ bike.model }}</title>
+</head>
+<body>
+    <h1>{{ bike.brand }} {{ bike.model }}</h1>
+    <p>{{ bike.description }}</p>
+    <a href="{% url 'update_bike' bike.id %}">Edit</a>
+    <form action="{% url 'delete_bike' bike.id %}" method="POST">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+    <a href="{% url 'bike_index' %}">Back to all bikes</a>
+</body>
+</html>

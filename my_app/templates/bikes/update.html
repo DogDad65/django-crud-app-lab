@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit {{ bike.brand }} {{ bike.model }}</title>
+</head>
+<body>
+    <h1>Edit {{ bike.brand }} {{ bike.model }}</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="brand">Brand:</label>
+        <input type="text" name="brand" id="brand" value="{{ bike.brand }}" required>
+        
+        <label for="model">Model:</label>
+        <input type="text" name="model" id="model" value="{{ bike.model }}" required>
+        
+        <label for="description">Description:</label>
+        <textarea name="description" id="description" required>{{ bike.description }}</textarea>
+        
+        <button type="submit">Update Bike</button>
+    </form>
+</body>
+</html>
