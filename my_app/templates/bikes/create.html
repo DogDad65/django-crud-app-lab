@@ -1,22 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Create a New Bike</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
     <h1>Add a New Bike</h1>
-    <form method="POST">
+    <form method="POST" class="form">
         {% csrf_token %}
-        <label for="brand">Brand:</label>
-        <input type="text" name="brand" id="brand" required>
+        <div class="form-group">
+            <label for="brand">Brand:</label>
+            <input type="text" name="brand" id="brand" required>
+        </div>
         
-        <label for="model">Model:</label>
-        <input type="text" name="model" id="model" required>
+        <div class="form-group">
+            <label for="model">Model:</label>
+            <input type="text" name="model" id="model" required>
+        </div>
         
-        <label for="description">Description:</label>
-        <textarea name="description" id="description" required></textarea>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea name="description" id="description" required></textarea>
+        </div>
         
-        <button type="submit">Create Bike</button>
+        <button type="submit" class="btn">Create Bike</button>
     </form>
-</body>
-</html>
+{% endblock %}

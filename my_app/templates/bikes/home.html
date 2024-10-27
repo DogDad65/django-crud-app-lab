@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Bike Collector - Home</title>
-    <link rel="icon" href="{% static 'path_to_your_favicon.ico' %}">
+{% extends 'base.html' %}
 
-</head>
-<body>
-    <h1>Welcome to the Bike Collector App</h1>
-    <p>Start managing your collection of road and gravel bikes!</p>
-    <a href="{% url 'bike_index' %}">View all bikes</a>
-</body>
-</html>
+{% block content %}
+  <h1>Welcome to the Bike Collector App</h1>
+  <p>Start managing your collection of road and gravel bikes!</p>
+  <a href="{% url 'bike_index' %}">View All Bikes</a>
+{% endblock %}

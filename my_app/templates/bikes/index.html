@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>All Bikes</title>
-</head>
-<body>
-    <h1>All Bikes</h1>
-    <ul>
-        {% for bike in bikes %}
-            <li>
-                <a href="{% url 'bike_detail' bike.id %}">{{ bike.brand }} - {{ bike.model }}</a>
-            </li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'create_bike' %}">Add a new bike</a>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Bike Collection</h1>
+  <a href="{% url 'create_bike' %}">Add New Bike</a>
+  <ul>
+    {% for bike in bikes %}
+      <li>
+        <a href="{% url 'bike_detail' bike.id %}">{{ bike.brand }} {{ bike.model }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

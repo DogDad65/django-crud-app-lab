@@ -1,0 +1,116 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Container */
+.container {
+    width: 80%;
+    max-width: 1000px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+/* Typography */
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 2.5em;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #555;
+}
+
+/* Form Styles */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+textarea {
+    height: 100px;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #4cae4c;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #333; /* Dark background */
+    padding: 10px;
+    display: flex;
+    justify-content: space-between; /* Evenly spread the items */
+    align-items: center;
+}
+
+.navbar a {
+    color: #ffffff; /* White text color for better contrast */
+    text-decoration: none;
+    padding: 10px 15px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.navbar a:hover {
+    color: #f4f4f4; /* Slightly lighter color on hover */
+    background-color: #444; /* Darker background on hover */
+    border-radius: 4px;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 15px; /* Space between each item */
+    margin: 0;
+    padding: 0;
+}
+
