@@ -85,15 +85,15 @@ textarea {
 
 /* Navbar Styles */
 .navbar {
-    background-color: #333; /* Dark background */
+    background-color: #333;
     padding: 10px;
     display: flex;
-    justify-content: space-between; /* Evenly spread the items */
+    justify-content: space-between;
     align-items: center;
 }
 
 .navbar a {
-    color: #ffffff; /* White text color for better contrast */
+    color: #ffffff;
     text-decoration: none;
     padding: 10px 15px;
     font-weight: bold;
@@ -101,16 +101,15 @@ textarea {
 }
 
 .navbar a:hover {
-    color: #f4f4f4; /* Slightly lighter color on hover */
-    background-color: #444; /* Darker background on hover */
+    color: #f4f4f4;
+    background-color: #444;
     border-radius: 4px;
 }
 
 .navbar ul {
     list-style: none;
     display: flex;
-    gap: 15px; /* Space between each item */
+    gap: 15px;
     margin: 0;
     padding: 0;
 }
-

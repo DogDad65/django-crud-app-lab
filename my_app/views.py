@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Bike
+from .models import Bike, Category
 
 # Home view
 def home(request):
@@ -22,9 +22,14 @@ def create_bike(request):
         brand = request.POST.get('brand')
         model = request.POST.get('model')
         description = request.POST.get('description')
-        Bike.objects.create(brand=brand, model=model, description=description)
+        category_id = request.POST.get('category')
+        category = Category.objects.get(id=category_id)
+        Bike.objects.create(brand=brand, model=model, description=description, category=category)
         return redirect('bike_index')
-    return render(request, 'bikes/create.html')
+    categories = Category.objects.all()  # Fetch all categories
+    return render(request, 'bikes/create.html', {'categories': categories})
+
+
 
 # Update view - Update an existing bike
 def update_bike(request, bike_id):
@@ -33,11 +38,19 @@ def update_bike(request, bike_id):
         bike.brand = request.POST.get('brand')
         bike.model = request.POST.get('model')
         bike.description = request.POST.get('description')
+        category_id = request.POST.get('category')
+        bike.category = Category.objects.get(id=category_id) if category_id else None
         bike.save()
-        return redirect('bike_detail', bike_id=bike.pk)  # Use pk instead of id
-    return render(request, 'bikes/update.html', {'bike': bike})
+        return redirect('bike_detail', bike_id=bike.pk)
+    categories = Category.objects.all()  # Fetch categories for the dropdown
+    return render(request, 'bikes/update.html', {'bike': bike, 'categories': categories})
 
-
+def add_category(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        Category.objects.create(name=name)
+        return redirect('create_bike')  # Redirect back to the bike creation page
+    return render(request, 'bikes/add_category.html')
 
 # Delete view - Delete a bike
 def delete_bike(request, bike_id):

@@ -1,13 +1,21 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/bikes/bike-index.css' %}">
+{% endblock %}
 
 {% block content %}
-  <h1>Bike Collection</h1>
-  <a href="{% url 'create_bike' %}">Add New Bike</a>
-  <ul>
-    {% for bike in bikes %}
-      <li>
-        <a href="{% url 'bike_detail' bike.id %}">{{ bike.brand }} {{ bike.model }}</a>
-      </li>
-    {% endfor %}
-  </ul>
+<div class="container">
+    <h1>Bike Collection</h1>
+    <a href="{% url 'create_bike' %}" class="add-bike-btn">Add New Bike</a>
+    <div class="bike-list">
+        {% for bike in bikes %}
+            <div class="bike-item">
+                <h2><a href="{% url 'bike_detail' bike.id %}">{{ bike.brand }} {{ bike.model }}</a></h2>
+                <p>{{ bike.description }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

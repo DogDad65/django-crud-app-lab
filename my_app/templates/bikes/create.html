@@ -18,6 +18,18 @@
             <label for="description">Description:</label>
             <textarea name="description" id="description" required></textarea>
         </div>
+
+        <!-- Category dropdown with a link to add a new category -->
+        <div class="form-group">
+            <label for="category">Category:</label>
+            <select name="category" id="category" required>
+                <option value="">Select a category</option>
+                {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+            <p><a href="{% url 'add_category' %}">Add a new category</a></p>
+        </div>
         
         <button type="submit" class="btn">Create Bike</button>
     </form>
