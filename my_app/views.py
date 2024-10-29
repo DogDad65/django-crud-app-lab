@@ -1,61 +1,70 @@
-from django.shortcuts import render, redirect
-from .models import Bike, Category
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from .models import Bike, Category, Maintenance
+from .forms import MaintenanceForm
 
-# Home view
 def home(request):
     return render(request, 'bikes/home.html')
-
-
-# Index view - List all bikes
-def bike_index(request):
-    bikes = Bike.objects.all()
-    return render(request, 'bikes/index.html', {'bikes': bikes})
-
-# Detail view - Show details of a single bike
-def bike_detail(request, bike_id):
-    bike = Bike.objects.get(id=bike_id)
-    return render(request, 'bikes/detail.html', {'bike': bike})
-
-# Create view - Create a new bike
-def create_bike(request):
-    if request.method == 'POST':
-        brand = request.POST.get('brand')
-        model = request.POST.get('model')
-        description = request.POST.get('description')
-        category_id = request.POST.get('category')
-        category = Category.objects.get(id=category_id)
-        Bike.objects.create(brand=brand, model=model, description=description, category=category)
-        return redirect('bike_index')
-    categories = Category.objects.all()  # Fetch all categories
-    return render(request, 'bikes/create.html', {'categories': categories})
-
-
-
-# Update view - Update an existing bike
-def update_bike(request, bike_id):
-    bike = Bike.objects.get(id=bike_id)
-    if request.method == 'POST':
-        bike.brand = request.POST.get('brand')
-        bike.model = request.POST.get('model')
-        bike.description = request.POST.get('description')
-        category_id = request.POST.get('category')
-        bike.category = Category.objects.get(id=category_id) if category_id else None
-        bike.save()
-        return redirect('bike_detail', bike_id=bike.pk)
-    categories = Category.objects.all()  # Fetch categories for the dropdown
-    return render(request, 'bikes/update.html', {'bike': bike, 'categories': categories})
 
 def add_category(request):
     if request.method == 'POST':
         name = request.POST.get('name')
         Category.objects.create(name=name)
-        return redirect('create_bike')  # Redirect back to the bike creation page
+        return redirect('create_bike')  # Redirect back to the bike creation page after adding category
     return render(request, 'bikes/add_category.html')
 
-# Delete view - Delete a bike
-def delete_bike(request, bike_id):
-    bike = Bike.objects.get(id=bike_id)
+class BikeListView(ListView):
+    model = Bike
+    template_name = 'bikes/index.html'
+    context_object_name = 'bikes'
+
+class BikeDetailView(DetailView):
+    model = Bike
+    template_name = 'bikes/detail.html'
+    context_object_name = 'bike'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['maintenance_form'] = MaintenanceForm()  # Pass the maintenance form to the template
+        return context
+
+class BikeCreateView(CreateView):
+    model = Bike
+    fields = ['brand', 'model', 'description', 'category']
+    template_name = 'bikes/create.html'
+    success_url = reverse_lazy('bike_index')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        return context
+
+class BikeUpdateView(UpdateView):
+    model = Bike
+    fields = ['brand', 'model', 'description', 'category']
+    template_name = 'bikes/update.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy('bike_detail', kwargs={'pk': self.object.pk})
+
+class BikeDeleteView(DeleteView):
+    model = Bike
+    template_name = 'bikes/delete.html'
+    success_url = reverse_lazy('bike_index')
+
+# Add the new view function here
+def add_maintenance(request, bike_id):
+    bike = get_object_or_404(Bike, id=bike_id)
     if request.method == 'POST':
-        bike.delete()
-        return redirect('bike_index')
-    return render(request, 'bikes/delete.html', {'bike': bike})
+        form = MaintenanceForm(request.POST)
+        if form.is_valid():
+            new_maintenance = form.save(commit=False)
+            new_maintenance.bike = bike
+            new_maintenance.save()
+        return redirect('bike_detail', pk=bike.id)

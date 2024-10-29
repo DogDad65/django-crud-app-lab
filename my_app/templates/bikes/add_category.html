@@ -2,12 +2,13 @@
 
 {% block content %}
     <h1>Add a New Category</h1>
-    <form method="POST" class="form">
+    <form method="POST">
         {% csrf_token %}
         <div class="form-group">
             <label for="name">Category Name:</label>
             <input type="text" name="name" id="name" required>
         </div>
-        <button type="submit" class="btn">Add Category</button>
+        <button type="submit">Add Category</button>
     </form>
+    <p><a href="{% url 'create_bike' %}">Back to Create Bike</a></p>
 {% endblock %}

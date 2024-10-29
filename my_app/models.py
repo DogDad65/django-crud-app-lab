@@ -14,3 +14,28 @@ class Bike(models.Model):
 
     def __str__(self):
         return f"{self.brand} {self.model}"
+    
+# Define a tuple of choices for maintenance types
+MAINTENANCE_TYPES = (
+    ('C', 'Chain Replacement'),
+    ('T', 'Tire Replacement'),
+    ('O', 'Oil Change'),
+    ('B', 'Brake Check')
+)
+
+class Maintenance(models.Model):
+    date = models.DateField('Maintenance Date')
+    maintenance_type = models.CharField(
+        max_length=1,
+        choices=MAINTENANCE_TYPES,
+        default=MAINTENANCE_TYPES[0][0]
+    )
+    notes = models.TextField(blank=True, null=True)
+    # Link each maintenance record to a specific bike
+    bike = models.ForeignKey(Bike, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.get_maintenance_type_display()} on {self.date}"
+
+    class Meta:
+        ordering = ['-date']  # Newest maintenance first

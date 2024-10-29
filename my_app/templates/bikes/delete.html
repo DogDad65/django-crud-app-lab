@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Delete {{ bike.brand }} {{ bike.model }}</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Are you sure you want to delete {{ bike.brand }} {{ bike.model }}?</h1>
     <form method="POST">
-        {% csrf_token %}
-        <button type="submit">Yes, Delete</button>
+      {% csrf_token %}
+      <button type="submit">Yes, Delete</button>
     </form>
     <a href="{% url 'bike_detail' bike.id %}">Cancel</a>
-</body>
+  </body>
 </html>

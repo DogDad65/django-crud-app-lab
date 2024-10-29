@@ -10,6 +10,7 @@
     <h1>Edit {{ bike.brand }} {{ bike.model }}</h1>
     <form method="POST" class="form">
         {% csrf_token %}
+        
         <div class="form-group">
             <label for="brand">Brand:</label>
             <input type="text" name="brand" id="brand" value="{{ bike.brand }}" required>
@@ -29,10 +30,13 @@
             <label for="category">Category:</label>
             <select name="category" id="category" required>
                 {% for category in categories %}
-                    <option value="{{ category.id }}" {% if bike.category.id == category.id %}selected{% endif %}>{{ category.name }}</option>
+                    <option value="{{ category.id }}" {% if bike.category.id == category.id %}selected{% endif %}>
+                        {{ category.name }}
+                    </option>
                 {% endfor %}
             </select>
         </div>
+        
 
         <button type="submit" class="btn">Update Bike</button>
     </form>

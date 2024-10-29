@@ -1,12 +1,12 @@
 from django.urls import path
-from . import views
+from .views import BikeListView, BikeDetailView, BikeCreateView, BikeUpdateView, BikeDeleteView, add_maintenance, add_category
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('bikes/', views.bike_index, name='bike_index'),
-    path('add-category/', views.add_category, name='add_category'),
-    path('bikes/<int:bike_id>/', views.bike_detail, name='bike_detail'),
-    path('bikes/create/', views.create_bike, name='create_bike'),
-    path('bikes/<int:bike_id>/update/', views.update_bike, name='update_bike'),
-    path('bikes/<int:bike_id>/delete/', views.delete_bike, name='delete_bike'),
+    path('', BikeListView.as_view(), name='bike_index'),
+    path('create/', BikeCreateView.as_view(), name='create_bike'),
+    path('<int:pk>/', BikeDetailView.as_view(), name='bike_detail'),
+    path('<int:pk>/update/', BikeUpdateView.as_view(), name='bike_update'),
+    path('<int:pk>/delete/', BikeDeleteView.as_view(), name='bike_delete'),
+    path('<int:bike_id>/add-maintenance/', add_maintenance, name='add_maintenance'),
+    path('add-category/', add_category, name='add_category'),  # Add this line
 ]
