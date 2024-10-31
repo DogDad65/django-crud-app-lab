@@ -1,36 +1,41 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Add a New Bike</h1>
-    <form method="POST" class="form">
-        {% csrf_token %}
-        <div class="form-group">
+<div class="form-list-container">
+    <!-- Form Section -->
+    <div class="form-container">
+        <form method="POST" action="{% url 'create_bike' %}">
+            {% csrf_token %}
             <label for="brand">Brand:</label>
-            <input type="text" name="brand" id="brand" required>
-        </div>
+            <input type="text" id="brand" name="brand" required>
 
-        <div class="form-group">
             <label for="model">Model:</label>
-            <input type="text" name="model" id="model" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="description">Description:</label>
-            <textarea name="description" id="description" required></textarea>
-        </div>
+            <input type="text" id="model" name="model" required>
 
-        <!-- Category dropdown with a link to add a new category -->
-        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description"></textarea>
+
             <label for="category">Category:</label>
-            <select name="category" id="category" required>
-                <option value="">Select a category</option>
+            <select id="category" name="category">
                 {% for category in categories %}
                     <option value="{{ category.id }}">{{ category.name }}</option>
                 {% endfor %}
             </select>
-            <p><a href="{% url 'add_category' %}">Add a new category</a></p>
+
+            <button type="submit" class="btn">Create Bike</button>
+        </form>
+    </div>
+
+    <!-- List Section -->
+    <div class="details-list-container">
+        <div class="details-list">
+            <h3>Your Bikes</h3>
+            <ul>
+                {% for bike in bikes %}
+                    <li>{{ bike.brand }} {{ bike.model }}</li>
+                {% endfor %}
+            </ul>
         </div>
-        
-        <button type="submit" class="btn">Create Bike</button>
-    </form>
+    </div>
+</div>
 {% endblock %}

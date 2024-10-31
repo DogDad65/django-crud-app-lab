@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -14,14 +15,22 @@ class Bike(models.Model):
 
     def __str__(self):
         return f"{self.brand} {self.model}"
-    
+
 # Define a tuple of choices for maintenance types
 MAINTENANCE_TYPES = (
     ('C', 'Chain Replacement'),
     ('T', 'Tire Replacement'),
-    ('O', 'Oil Change'),
+    ('W', 'Wax Chain'),
     ('B', 'Brake Check')
 )
+
+UPGRADE_TYPES = [
+    ('PM', 'Power Meter'),
+    ('CS', 'Cassette'),
+    ('SH', 'Shifters'),
+    ('HB', 'Handlebars'),
+    ('CR', 'Carbon Rims'),
+]
 
 class Maintenance(models.Model):
     date = models.DateField('Maintenance Date')
@@ -31,7 +40,6 @@ class Maintenance(models.Model):
         default=MAINTENANCE_TYPES[0][0]
     )
     notes = models.TextField(blank=True, null=True)
-    # Link each maintenance record to a specific bike
     bike = models.ForeignKey(Bike, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -39,3 +47,19 @@ class Maintenance(models.Model):
 
     class Meta:
         ordering = ['-date']  # Newest maintenance first
+
+class Upgrade(models.Model):
+    type = models.CharField(
+        max_length=2,
+        choices=UPGRADE_TYPES,
+        default='PM'  # Default set to 'PM' if needed, or remove if no default is desired
+    )
+    description = models.TextField(blank=True)
+    date_installed = models.DateField()
+    bike = models.ForeignKey(Bike, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.get_type_display()} installed on {self.date_installed}"
+
+    def get_absolute_url(self):
+        return reverse('upgrade_detail', kwargs={'pk': self.pk})

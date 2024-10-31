@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ upgrade.name }}</h1>
+<p>{{ upgrade.description }}</p>
+<a href="{% url 'upgrade_update' upgrade.pk %}">Edit</a> |
+<a href="{% url 'upgrade_delete' upgrade.pk %}">Delete</a> |
+<a href="{% url 'upgrade_list' %}">Back to All Upgrades</a>
+{% endblock %}

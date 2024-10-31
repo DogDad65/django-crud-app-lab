@@ -1,115 +1,410 @@
-/* Global Styles */
+/* General Styling */
 body {
+    background-color: #f4f4f9;
+    color: #333;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    padding: 20px;
-    margin: 0;
     line-height: 1.6;
 }
 
-/* Container */
-.container {
-    width: 80%;
-    max-width: 1000px;
-    margin: 20px auto;
-    background-color: #ffffff;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-}
-
-/* Typography */
-h1 {
-    text-align: center;
-    color: #333;
-    font-size: 2.5em;
-}
-
-h2 {
-    color: #333;
-    margin-bottom: 10px;
-}
-
-p {
-    color: #555;
-}
-
-/* Form Styles */
-.form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
-}
-
-input[type="text"],
-textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    box-sizing: border-box;
-}
-
-textarea {
-    height: 100px;
-}
-
-/* Buttons */
-.btn {
-    padding: 10px;
-    background-color: #5cb85c;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    text-align: center;
-    transition: background-color 0.3s ease;
-}
-
-.btn:hover {
-    background-color: #4cae4c;
-}
-
-/* Navbar Styles */
+/* Navbar Styling */
 .navbar {
     background-color: #333;
-    padding: 10px;
+    padding: 1em;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.navbar a {
-    color: #ffffff;
-    text-decoration: none;
-    padding: 10px 15px;
-    font-weight: bold;
-    margin-right: 10px;
-}
-
-.navbar a:hover {
-    color: #f4f4f4;
-    background-color: #444;
-    border-radius: 4px;
+    justify-content: center;
 }
 
 .navbar ul {
     list-style: none;
     display: flex;
-    gap: 15px;
-    margin: 0;
+    gap: 1em;
     padding: 0;
+    margin: 0;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5em 1em;
+    background-color: #444;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar a:hover {
+    background-color: #28a745;
+}
+
+/* Styling for Container */
+.container {
+    max-width: 800px;
+    margin: 2em auto;
+    padding: 1.5em;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading Styling */
+.container h1 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 0.5em;
+}
+
+.container h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+.details-list {
+    list-style: none;
+    padding: 0;
+}
+
+.details-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em;
+    margin-bottom: 0.5em;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+.btn {
+    padding: 0.4em 1em;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Homepage Styling */
+.homepage {
+    text-align: center;
+    padding: 3em;
+    background-color: #f4f4f9;
+    color: #333;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 2em auto;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.homepage h1 {
+    font-size: 2.5em;
+    color: #2c3e50;
+    margin-bottom: 0.5em;
+}
+
+.homepage p {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 1.5em;
+}
+
+.homepage .btn-primary {
+    padding: 0.8em 1.5em;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.homepage .btn-primary:hover {
+    background-color: #218838;
+}
+
+ /* Bike List Styling */
+.bike-list {
+    background-color: #f4f4f9;
+    padding: 2em;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 2em auto;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.bike-list h2 {
+    font-size: 2em;
+    color: #2c3e50;
+    margin-bottom: 1em;
+}
+
+.bike-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.bike-list li {
+    background-color: #e9ecef;
+    margin: 0.5em 0;
+    padding: 0.8em;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.bike-list li a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.bike-list li a:hover {
+    text-decoration: underline;
+}
+
+.bike-list li:hover {
+    background-color: #d4d8dc;
+}
+
+
+/* Details Page Styling */
+.details-header {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.details-header h2 {
+    font-size: 2em;
+    margin: 0;
+}
+
+.details-header p {
+    font-size: 1.2em;
+    color: #666;
+}
+
+/* Container for Form and List */
+.form-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    max-width: 900px;
+    margin: 2em auto;
+    padding: 2em;
+    background-color: #f9f9f9; /* Slightly off-white for subtle contrast */
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Styling */
+.form-container {
+    flex: 1;
+    min-width: 300px;
+    max-width: 450px;
+    background-color: #ffffff;
+    padding: 2em;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+form {
+    margin: 1.5em 0;
+}
+
+/* Label Styling */
+form label {
+    font-weight: bold;
+    color: #333;
+    margin-top: 1em; /* Adds space above each label */
+    display: block;
+}
+
+/* Input and Textarea Styling */
+form input[type="text"],
+form input[type="date"],
+form select,
+form textarea {
+    display: block;
+    width: 100%;
+    padding: 0.7em;
+    margin-top: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: #fdfdfd;
+    transition: border-color 0.2s ease-in-out; /* Smooth transition for focus */
+}
+
+form input[type="text"]:focus,
+form input[type="date"]:focus,
+form select:focus,
+form textarea:focus {
+    border-color: #28a745; /* Green border on focus */
+    outline: none;
+}
+
+/* Button Styling */
+form .btn {
+    background-color: #28a745;
+    color: white;
+    padding: 0.8em 1.5em;
+    font-weight: bold;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1em;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+form .btn:hover {
+    background-color: #218838;
+}
+
+
+/* Button Styling */
+.btn {
+    display: inline-block;
+    padding: 0.8em 1.5em;
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #218838;
+}
+
+/* Secondary Button (for edit/delete links) */
+.btn-secondary {
+    background-color: #007bff;
+}
+
+.btn-secondary:hover {
+    background-color: #0056b3;
+}
+
+/* Danger Button (for delete actions) */
+.btn-danger {
+    background-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+
+/* List Styling */
+.details-list-container {
+    flex: 1;
+    min-width: 300px;
+    max-width: 450px;
+    background-color: #f9f9f9;
+    padding: 1.5em;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.details-list {
+    background-color: #f9f9f9;
+    padding: 1em;
+    border-radius: 5px;
+}
+
+.details-list h3 {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 0.5em;
+}
+
+.details-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.details-list li {
+    margin-bottom: 0.5em;
+    padding: 0.5em;
+    background-color: #e9ecef;
+    border-radius: 3px;
+    font-size: 1em;
+    color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .form-list-container {
+        flex-direction: column;
+        padding: 1em;
+    }
+
+    .form-container, .details-list-container {
+        max-width: 100%;
+        padding: 1em;
+    }
+}
+
+/* Upgrade and Maintenance Sections */
+.details-list {
+    background-color: #f9f9f9;
+    padding: 1em;
+    border-radius: 5px;
+}
+
+.details-list h3 {
+    margin-bottom: 0.5em;
+}
+
+.details-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.details-list li {
+    margin-bottom: 0.5em;
+    padding: 0.5em;
+    background-color: #e9ecef;
+    border-radius: 3px;
+}
+
+/* Footer for Consistency */
+.footer {
+    text-align: center;
+    margin-top: 2em;
+    padding: 1em;
+    font-size: 0.9em;
+    color: #888;
+}
+
+/* Link Styling */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }

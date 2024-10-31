@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form-list-container">
+    <div class="form-container">
+        <h1>{% if object %}Edit Upgrade{% else %}Add Upgrade{% endif %}</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn">
+                {% if object %}Update{% else %}Add{% endif %} Upgrade
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

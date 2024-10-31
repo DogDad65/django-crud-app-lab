@@ -1,17 +1,16 @@
-{% extends 'base.html' %} {% load static %} {% block head %}
-<link rel="stylesheet" href="{% static 'css/bikes/bike-index.css' %}" />
-{% endblock %} {% block content %}
-<div class="container">
-  <h1>All Bikes</h1>
-  <ul>
-    {% for bike in bikes %}
-    <li>
-      <a href="{% url 'bike_detail' bike.pk %}"
-        >{{ bike.brand }} {{ bike.model }}</a
-      >
-      - Category: {{ bike.category.name }}
-    </li>
-    {% endfor %}
-  </ul>
-</div>
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="bike-list">
+        <h2>All Bikes</h2>
+        <ul>
+            {% for bike in bikes %}
+                <li>
+                    <a href="{% url 'bike_detail' bike.pk %}">{{ bike.brand }} {{ bike.model }}</a> - Category: {{ bike.category }}
+                </li>
+            {% empty %}
+                <li>No bikes available.</li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}

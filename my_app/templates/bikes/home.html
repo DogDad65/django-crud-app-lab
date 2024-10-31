@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Welcome to the Bike Collector App</h1>
-    <p>Start managing your collection of road and gravel bikes!</p>
-    <a href="{% url 'bike_index' %}">View All Bikes</a>
+    <div class="homepage">
+        <h1>Welcome to the Bike Collector App</h1>
+        <p>Start managing your collection of road and gravel bikes!</p>
+        <a href="{% url 'bike_index' %}" class="btn-primary">View All Bikes</a>
+    </div>
 {% endblock %}

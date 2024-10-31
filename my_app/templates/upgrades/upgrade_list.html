@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>All Upgrades</h1>
+<ul>
+    {% for upgrade in upgrades %}
+        <li>
+            <strong>Type:</strong> {{ upgrade.get_type_display }} -
+
+            <strong>Date Installed:</strong> {{ upgrade.date_installed }} - 
+            <strong>Description:</strong> {{ upgrade.description }}
+            <a href="{% url 'upgrade_update' upgrade.pk %}">Edit</a> |
+            <a href="{% url 'upgrade_delete' upgrade.pk %}">Delete</a>
+        </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'upgrade_create' %}">Add New Upgrade</a>
+{% endblock %}
